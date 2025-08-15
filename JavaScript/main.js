@@ -6,6 +6,10 @@ const road = new Road(canvas.width / 2, canvas.width * 0.93);
 const car = new Car(road.getLaneCenter(1), 100, 30, 50, "MASTER");
 const traffic = [new Car(road.getLaneCenter(1), -100, 30, 50, "SLAVE", 2)];
 
+const mainCar = drawSVGOnCanvas(mainCarSVG);
+const trafficCar1 = drawSVGOnCanvas(traffic1SVG);
+
+const carSVGs = [mainCar, trafficCar1];
 car.draw(ctx);
 
 animate();
@@ -24,10 +28,10 @@ function animate() {
   road.draw(ctx);
 
   for (let i = 0; i < traffic.length; i++) {
-    traffic[i].draw(ctx, "red");
+    traffic[i].draw(ctx, carSVGs[1]);
   }
 
-  car.draw(ctx, "blue");
+  car.draw(ctx, carSVGs[0]);
   ctx.restore();
   requestAnimationFrame(animate);
 }

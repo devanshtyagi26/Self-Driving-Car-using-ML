@@ -38,3 +38,10 @@ function polyIntersect(poly1, poly2) {
   }
   return false;
 }
+
+function drawSVGOnCanvas(svgString) {
+  const svgImage = new Image();
+  svgImage.src =
+    "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString);
+  return svgImage;
+}

@@ -109,26 +109,50 @@ class Car {
     this.y -= Math.cos(this.angle) * this.speed;
   }
 
-  draw(ctx, color) {
+  draw(ctx, svgImage) {
     if (!this.polygon) return;
-    if (this.damaged) {
-      ctx.fillStyle = "gray";
-    } else {
-      ctx.fillStyle = color;
-    }
 
+    ctx.save();
+
+    // Fill color based on damaged state
+    ctx.fillStyle = this.damaged ? "red" : "none";
+
+    // Draw the rectangle (polygon)
     ctx.beginPath();
     ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
     for (let i = 1; i < this.polygon.length; i++) {
       ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
     }
     ctx.closePath();
-    ctx.strokeStyle = "blue";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    // ctx.fillStyle = "rgba(0,0,255,0.3)";
-    ctx.fill();
 
+    if (this.damaged) {
+      ctx.fill();
+    }
+
+    // Draw the SVG aligned & rotated with the rectangle
+    if (svgImage.complete) {
+      // Calculate center of polygon
+      const centerX = (this.polygon[0].x + this.polygon[2].x) / 2;
+      const centerY = (this.polygon[0].y + this.polygon[2].y) / 2;
+
+      // Move origin to car center and rotate
+      ctx.translate(0, -1);
+      ctx.translate(centerX, centerY);
+      ctx.rotate(-this.angle); // Rotate extra 90° to match SVG
+
+      // Draw SVG centered on new origin
+      ctx.drawImage(
+        svgImage,
+        -this.width / 2,
+        -this.height / 2,
+        this.width,
+        this.height
+      );
+    }
+
+    ctx.restore();
+
+    // Draw sensors if available
     if (this.sensor) {
       this.sensor.draw(ctx);
     }
