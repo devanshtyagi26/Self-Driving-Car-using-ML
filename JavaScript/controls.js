@@ -1,11 +1,18 @@
 class Controls {
-  constructor() {
+  constructor(role) {
     this.forward = false;
     this.reverse = false;
     this.left = false;
     this.right = false;
 
-    this.#addKeyboardListeners();
+    switch (role) {
+      case "MASTER":
+        this.#addKeyboardListeners();
+        break;
+      case "SLAVE":
+        this.forward = true;
+        break;
+    }
   }
 
   #addKeyboardListeners() {
