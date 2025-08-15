@@ -42,6 +42,7 @@ class Controls {
     };
     document.onkeyup = (e) => {
       switch (e.key) {
+        // w-a-s-d
         case "a":
           this.left = false;
           break;
