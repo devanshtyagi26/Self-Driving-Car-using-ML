@@ -7,9 +7,33 @@ body{
     margin: 0;
     background-color: darkgray;
     overflow: hidden;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#myCanvas{
+#buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+button{
+  border: none;
+  cursor: pointer;
+  margin: 2px;
+  padding: 3px;
+  background-color: grey;
+  
+}
+
+button:hover{
+  background-color: aqua;
+}
+
+#carCanvas{
     background-color: lightgray;
+}
+
+#networkCanvas{
+    background-color: black;
 }
