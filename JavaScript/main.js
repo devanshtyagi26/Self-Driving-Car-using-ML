@@ -8,7 +8,7 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.93);
 
-const N = 200;
+const N = 100;
 const cars = generateCars(N);
 let bestCar = cars[0];
 
@@ -25,6 +25,14 @@ const traffic = [
   new Car(road.getLaneCenter(1), -100, 30, 50, "SLAVE", 2),
   new Car(road.getLaneCenter(2), -300, 30, 50, "SLAVE", 2),
   new Car(road.getLaneCenter(0), -300, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(2), -500, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(1), -500, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(0), -600, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(2), -700, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(1), -750, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(0), -850, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(2), -900, 30, 50, "SLAVE", 2),
+  new Car(road.getLaneCenter(1), -1000, 30, 50, "SLAVE", 2),
 ];
 
 const mainCar = drawSVGOnCanvas(mainCarSVG);
